@@ -1,12 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { Link, Route, Routes, useSearchParams } from "react-router-dom";
 import SearchForm from "./components/SearchForm";
 import Details from "./pages/Details";
 import Start from "./pages/Start";
 
 export default function App() {
-  const queryClient = useQueryClient();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q");
 

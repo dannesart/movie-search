@@ -1,16 +1,15 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
 import Movie, { type TMovie } from "../components/Movie";
+import Splash from "../components/Splash";
 
 export default function Start() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
-
-  if (!query) return <p>Welcome to My Movies</p>;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["search", query],
@@ -36,6 +35,8 @@ export default function Start() {
         message="Something went wrong. Please try again later"
       />
     );
+
+  if (!query) return <Splash />;
   if ((!data || !data.results || !data.results.length) && query)
     return <Error title="No results" message="No results could be found" />;
 
