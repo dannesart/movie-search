@@ -10,3 +10,13 @@
     font-weight: 500;
   }
 }
+
+.animated {
+  animation: spinn 2s infinite linear;
+}
+
+@keyframes spinn {
+  to {
+    transform: rotate(360deg);
+  }
+}

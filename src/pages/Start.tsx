@@ -2,12 +2,15 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
+import Loader from "../components/Loader";
 import Movie, { type TMovie } from "../components/Movie";
 
 export default function Start() {
-  const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q");
+
+  if (!query) return <p>Welcome to My Movies</p>;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["search", query],
@@ -17,6 +20,7 @@ export default function Start() {
         {
           params: {
             query,
+            include_adult: false,
           },
         }
       );
@@ -24,11 +28,17 @@ export default function Start() {
     },
   });
 
-  if (isLoading) return <div>Loading ...</div>;
-  if (error) return <div>Error</div>;
+  if (isLoading) return <Loader />;
+  if (error)
+    return (
+      <Error
+        title="Error"
+        message="Something went wrong. Please try again later"
+      />
+    );
   if ((!data || !data.results || !data.results.length) && query)
-    return <p>Empty</p>;
-  if (!query) return <p>Welcome to My Movies</p>;
+    return <Error title="No results" message="No results could be found" />;
+
   const results = data.results;
   const total = data.total_results;
   return (
@@ -36,14 +46,14 @@ export default function Start() {
     results &&
     !isLoading && (
       <>
-        <h1>
+        <h1 className="bg-gray-50 p-3 rounded-lg">
           Search result for <span className="font-bold underline">{query}</span>{" "}
           with a total of <span className="font-bold underline">{total}</span>{" "}
           results
         </h1>
-        <section className="grid grid-cols-5 gap-4">
-          {results.map((movie: TMovie) => (
-            <Link to={"/details/472384"} className="flex-1">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {results.map((movie: TMovie, idx: number) => (
+            <Link to={"/details/" + movie.id} className="flex-1" key={idx}>
               <Movie title={movie.title} image={movie.poster_path} />
             </Link>
           ))}
