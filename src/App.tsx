@@ -28,11 +28,13 @@ export default function App() {
               MM
             </div>
           </Link>
-          <SearchForm
-            defaultValue={query as string}
-            onSubmit={newSearch}
-            onClear={() => newSearch("")}
-          />
+          <div className="max-w-[700px] w-full mx-auto">
+            <SearchForm
+              defaultValue={query as string}
+              onSubmit={newSearch}
+              onClear={() => newSearch("")}
+            />
+          </div>
         </header>
         <main className="p-4 flex flex-col gap-4">
           <Routes>

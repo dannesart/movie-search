@@ -34,7 +34,7 @@ export default function Form({
         <input
           type="text"
           name="search"
-          className="px-4 py-2 border-2 w-full border-slate-200 focus:border-rose-300 outline-none rounded-lg"
+          className="px-4 py-3 border-2 w-full border-slate-200 focus:border-rose-300 outline-none rounded-lg"
           placeholder="ex. Jurassic Park"
           autoComplete="off"
           value={value}
@@ -44,7 +44,7 @@ export default function Form({
         {canSubmit() && (
           <button
             name="clear"
-            className="absolute right-0.5 top-0.5 px-4 py-3  text-rose-400 rounded-lg cursor-pointer  disabled:bg-rose-400/20"
+            className="absolute right-0.5 top-0 bottom-0 px-4 flex items-center  text-rose-400 rounded-lg cursor-pointer  disabled:bg-rose-400/20"
             onClick={handleClear}
           >
             <FaTimes />

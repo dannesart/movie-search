@@ -84,14 +84,14 @@ export default function Details() {
           <p>{genres.map((g: { name: string }) => g.name).join(", ")}</p>
           <p className="max-w-[600px]">{overview}</p>
           <button
-            className="bg-rose-300 rounded-lg p-4 max-w-fit"
+            className="bg-rose-300 rounded-lg p-4 w-full md:max-w-fit"
             onClick={() => handleClickWatchList(!inWatchList)}
           >
             {inWatchList ? "Remove from watchlist" : "Add to watchlist"}
           </button>
         </div>
       </div>
-      <div className="bg-white shadow-lg p-4 py-6 flex flex-col gap-6 max-w-[1000px] min-h-96 mx-auto relative z-20 rounded-xl">
+      <div className="bg-white shadow-lg p-4 py-6 flex flex-col gap-6 w-full max-w-[1000px] min-h-96 mx-auto relative z-20 rounded-xl">
         <h3 className="text-3xl">More information</h3>
         <table>
           <tbody>
@@ -113,14 +113,18 @@ export default function Details() {
             </tr>
           </tbody>
         </table>
-        <h3 className="text-3xl">Belongs to</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          <Movie
-            title={belongs_to_collection.title}
-            image={belongs_to_collection.poster_path}
-            id={belongs_to_collection.id}
-          />
-        </div>
+        {belongs_to_collection && (
+          <>
+            <h3 className="text-3xl">Belongs to</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <Movie
+                title={belongs_to_collection.title}
+                image={belongs_to_collection.poster_path}
+                id={belongs_to_collection.id}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
