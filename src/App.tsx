@@ -49,9 +49,6 @@ export default function App() {
           >
             <span className="hidden md:block">Watch list</span>
             <FaHeart />
-            {/* <div className="w-14 aspect-square bg-rose-400 flex-none text-white rounded-full flex justify-center items-center">
-              <FaHeart />
-            </div> */}
           </Link>
         </header>
         <main className="p-4 flex flex-col gap-4">
