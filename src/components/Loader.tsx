@@ -6,10 +6,10 @@ export default function Loader() {
         cy="25"
         fill="none"
         r="20"
-        stroke-width="7"
+        strokeWidth="7"
         className="stroke-rose-500"
-        stroke-dasharray="90"
-        stroke-linecap="round"
+        strokeDasharray="90"
+        strokeLinecap="round"
       />
     </svg>
   );

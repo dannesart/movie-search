@@ -1,3 +1,4 @@
+import { FaFilm } from "react-icons/fa";
 import { Link, Route, Routes, useSearchParams } from "react-router-dom";
 import SearchForm from "./components/SearchForm";
 import Details from "./pages/Details";
@@ -20,12 +21,15 @@ export default function App() {
   return (
     <>
       <div className="flex flex-col gap-4 h-screen ">
-        <header className="flex gap-4 items-center border-b p-4 sticky top-0 bg-white z-10">
+        <header className="flex gap-4 items-center border-b p-4 sticky top-0 bg-white z-50">
           <Link to="/">
-            <div className="text-2xl min-w-max text-gray-800">My Movies</div>
+            <div className="text-2xl min-w-max text-gray-800 flex gap-2 items-center font-black">
+              <FaFilm />
+              MM
+            </div>
           </Link>
           <SearchForm
-            defaultValue={query}
+            defaultValue={query as string}
             onSubmit={newSearch}
             onClear={() => newSearch("")}
           />

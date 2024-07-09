@@ -7,11 +7,8 @@ import Loader from "../components/Loader";
 import Movie, { type TMovie } from "../components/Movie";
 import Splash from "../components/Splash";
 
-export default function Start() {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
-
-  const { data, isLoading, error } = useQuery({
+const useMovieQuery = (query: string) => {
+  return useQuery({
     queryKey: ["search", query],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -26,6 +23,11 @@ export default function Start() {
       return data;
     },
   });
+};
+export default function Start() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q");
+  const { data, isLoading, error } = useMovieQuery(query as string);
 
   if (isLoading) return <Loader />;
   if (error)
@@ -43,9 +45,7 @@ export default function Start() {
   const results = data.results;
   const total = data.total_results;
   return (
-    query &&
-    results &&
-    !isLoading && (
+    results && (
       <>
         <h1 className="bg-gray-50 p-3 rounded-lg">
           Search result for <span className="font-bold underline">{query}</span>{" "}
@@ -55,7 +55,11 @@ export default function Start() {
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {results.map((movie: TMovie, idx: number) => (
             <Link to={"/details/" + movie.id} className="flex-1" key={idx}>
-              <Movie title={movie.title} image={movie.poster_path} />
+              <Movie
+                title={movie.title}
+                image={movie.poster_path}
+                id={movie.id}
+              />
             </Link>
           ))}
         </section>

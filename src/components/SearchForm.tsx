@@ -54,7 +54,7 @@ export default function Form({
       <button
         type="submit"
         name="submit"
-        className="px-8 py-3 bg-rose-400 text-white rounded-lg cursor-pointer hover:bg-rose-500 disabled:bg-rose-400/20"
+        className="px-4 md:px-8 py-3 bg-rose-400 text-white rounded-lg cursor-pointer hover:bg-rose-500 disabled:bg-rose-400/20"
         disabled={!canSubmit()}
         onClick={handleSubmit}
       >
