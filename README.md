@@ -1,6 +1,7 @@
 # Movie search
 
-Built on react. Using useQuery and useSearchParams for statemanagemnt.
+Built on react (Typescript). Using useQuery and useSearchParams for statemanagemnt.
+Tailwind + react icons
 
 ## Setup
 

@@ -24,7 +24,18 @@ export default function Details() {
   };
 
   const handleClickWatchList = (toggle: boolean) => {
-    localStorage.setItem(`watch-${id}`, toggle.toString());
+    if (toggle) {
+      localStorage.setItem(
+        `watch-${id}`,
+        JSON.stringify({
+          title,
+          image: poster_path,
+          id,
+        })
+      );
+    } else {
+      localStorage.removeItem(`watch-${id}`);
+    }
     setWatchList(toggle);
   };
 
@@ -118,7 +129,7 @@ export default function Details() {
             <h3 className="text-3xl">Belongs to</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               <Movie
-                title={belongs_to_collection.title}
+                title={belongs_to_collection.name}
                 image={belongs_to_collection.poster_path}
                 id={belongs_to_collection.id}
               />

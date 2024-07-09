@@ -46,12 +46,12 @@ export default function Start() {
   const total = data.total_results;
   return (
     results && (
-      <>
-        <h1 className="bg-gray-50 p-3 rounded-lg">
-          Search result for <span className="font-bold underline">{query}</span>{" "}
-          with a total of <span className="font-bold underline">{total}</span>{" "}
-          results
-        </h1>
+      <div className="flex flex-col items-center justify-center gap-10">
+        <h1 className="text-4xl">Search result</h1>
+        <p className="bg-gray-50 p-3 rounded-lg">
+          For <span className="font-bold underline">{query}</span> with a total
+          of <span className="font-bold underline">{total}</span> results
+        </p>
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {results.map((movie: TMovie, idx: number) => (
             <Link to={"/details/" + movie.id} className="flex-1" key={idx}>
@@ -63,7 +63,7 @@ export default function Start() {
             </Link>
           ))}
         </section>
-      </>
+      </div>
     )
   );
 }
