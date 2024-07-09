@@ -29,7 +29,12 @@ export default function Start() {
   const query = searchParams.get("q");
   const { data, isLoading, error } = useMovieQuery(query as string);
 
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="w-full flex items-center justify-center p-10">
+        <Loader />
+      </div>
+    );
   if (error)
     return (
       <Error

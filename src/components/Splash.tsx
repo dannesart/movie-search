@@ -24,7 +24,12 @@ const useMovieQuery = () => {
 
 export default function Splash() {
   const { data, isLoading, error } = useMovieQuery();
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="w-full flex items-center justify-center p-10">
+        <Loader />
+      </div>
+    );
   if (error)
     return (
       <Error

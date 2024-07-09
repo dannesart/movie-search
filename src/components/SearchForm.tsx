@@ -29,12 +29,12 @@ export default function Form({
   };
 
   return (
-    <div className="flex gap-3 w-full">
+    <div className="flex w-full">
       <div className="relative flex-1">
         <input
           type="text"
           name="search"
-          className="px-4 py-3 border-2 w-full border-slate-200 focus:border-rose-300 outline-none rounded-lg"
+          className="px-4 py-3 border-2 w-full border-slate-200 border-r-0 focus:border-rose-300 outline-none rounded-l-lg"
           placeholder="ex. Jurassic Park"
           autoComplete="off"
           value={value}
@@ -54,7 +54,7 @@ export default function Form({
       <button
         type="submit"
         name="submit"
-        className="px-4 md:px-8 py-3 bg-rose-400 text-white rounded-lg cursor-pointer hover:bg-rose-500 disabled:bg-rose-400/20"
+        className="px-4 md:px-8 py-3 bg-rose-400 text-white rounded-r-lg cursor-pointer hover:bg-rose-500 "
         disabled={!canSubmit()}
         onClick={handleSubmit}
       >
